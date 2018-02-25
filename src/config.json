@@ -1,0 +1,15 @@
+{
+  "nintendoApi": {
+    "url": "https://www.nintendo.com/json/content/get/game",
+    "routes": {
+      "search": "/list/filter/subset",
+      "game": "/"
+    },
+    "errors": {
+      "notFound": {
+        "status": 404,
+        "message": "Game not found!"
+      }
+    }
+  }
+}
