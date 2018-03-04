@@ -13,7 +13,10 @@
     "build": "gulp",
     "eslint": "eslint src",
     "precommit": "npm run eslint",
-    "prepush": "npm run eslint"
+    "prepush": "npm run eslint",
+    "release": "release-it",
+    "release:minor": "release-it minor",
+    "release:major": "release-it major"
   },
   "dependencies": {
     "axios": "0.18.0"
@@ -32,7 +35,8 @@
     "gulp": "3.9.1",
     "gulp-babel": "7.0.1",
     "gulp-uglify": "3.0.0",
-    "husky": "^0.14.3"
+    "husky": "^0.14.3",
+    "release-it": "^7.2.1"
   },
   "engines": {
     "node": ">=9.5.0"
