@@ -10,18 +10,29 @@
     "dist"
   ],
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "eslint": "eslint src",
+    "precommit": "npm run eslint",
+    "prepush": "npm run eslint"
   },
   "dependencies": {
     "axios": "0.18.0"
   },
   "devDependencies": {
     "babel-core": "6.26.0",
+    "babel-eslint": "8.2.2",
     "babel-preset-env": "1.6.1",
     "del": "3.0.0",
+    "eslint": "4.18.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "gulp": "3.9.1",
     "gulp-babel": "7.0.1",
-    "gulp-uglify": "3.0.0"
+    "gulp-uglify": "3.0.0",
+    "husky": "^0.14.3"
   },
   "engines": {
     "node": ">=9.5.0"

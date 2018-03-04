@@ -1,0 +1,11 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": "standard",
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "semi": ["error", "always"]
+  },
+  "parser": "babel-eslint"
+}
