@@ -35,7 +35,29 @@ const search = (qtitlelike, options = {}) => {
     .catch(err => Promise.reject(err));
 };
 
+const getLatestGames = (options = {}) => {
+  const {
+    sort = 'release',
+    system = 'switch',
+    limit = 10,
+    availability = 'new',
+  } = options;
+
+  const url = config.nintendoApi.url + config.nintendoApi.routes.filter;
+
+  return axios.get(url, {params: {sort, system, limit, availability}})
+    .then(response => {
+      if (response.data.games) return response.data.games;
+      throw config.nintendoApi.errors.notFound;
+    })
+    .then(json => {
+      return Promise.resolve(json);
+    })
+    .catch(err => Promise.reject(err));
+};
+
 module.exports = {
   getGame,
   search,
+  getLatestGames,
 };

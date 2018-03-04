@@ -1,9 +1,10 @@
 {
   "nintendoApi": {
-    "url": "https://www.nintendo.com/json/content/get/game",
+    "url": "https://www.nintendo.com/json/content/get",
     "routes": {
-      "search": "/list/filter/subset",
-      "game": "/"
+      "search": "/game/list/filter/subset",
+      "game": "/game/",
+      "filter": "/filter/game"
     },
     "errors": {
       "notFound": {
