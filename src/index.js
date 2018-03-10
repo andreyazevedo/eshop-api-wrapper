@@ -41,11 +41,12 @@ const getLatestGames = (options = {}) => {
     system = 'switch',
     limit = 10,
     availability = 'new',
+    offset = 0,
   } = options;
 
   const url = config.nintendoApi.url + config.nintendoApi.routes.filter;
 
-  return axios.get(url, {params: {sort, system, limit, availability}})
+  return axios.get(url, {params: {sort, system, limit, availability, offset}})
     .then(response => {
       if (response.data.games) return response.data.games;
       throw config.nintendoApi.errors.notFound;
