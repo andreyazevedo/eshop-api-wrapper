@@ -1,12 +1,10 @@
 const config = require('./config');
 const axios = require('axios');
 
-const getGame = id => {
-  const url = config.nintendoApi.url + config.nintendoApi.routes.game;
-
-  return axios.get(url + id)
+const callAPI = (url, params = {}) => {
+  return axios.get(url, params)
     .then(response => {
-      if (response.data.game) return response.data.game;
+      if (response.data) return response.data;
       throw config.nintendoApi.errors.notFound;
     })
     .then(json => {
@@ -15,50 +13,52 @@ const getGame = id => {
     .catch(err => Promise.reject(err));
 };
 
-const search = (qtitlelike, options = {}) => {
+const game = id => {
+  const url = config.nintendoApi.url + config.nintendoApi.routes.game;
+
+  return callAPI(url);
+};
+
+const search = (query, options = {}) => {
+  return filter({
+    search: query,
+    ...options,
+  });
+};
+
+const filter = (options = {}) => {
   const {
-    qsortBy = 'releaseDate',
-    qdirection = 'descend',
-    qhardware = 'Nintendo Switch',
+    search,
+    sort,
+    direction,
+    system = 'switch',
+    limit = 10,
+    availability,
+    offset,
+    category,
+    price,
+    number,
   } = options;
 
   const url = config.nintendoApi.url + config.nintendoApi.routes.search;
+  const params = {
+    search,
+    system,
+    sort,
+    direction,
+    limit,
+    offset,
+    availability,
+    category,
+    price,
+    number,
+  };
 
-  return axios.get(url, {params: {qtitlelike, qhardware, qsortBy, qdirection}})
-    .then(response => {
-      if (response.data.game) return response.data.game;
-      throw config.nintendoApi.errors.notFound;
-    })
-    .then(json => {
-      return Promise.resolve(json);
-    })
-    .catch(err => Promise.reject(err));
-};
-
-const getLatestGames = (options = {}) => {
-  const {
-    sort = 'release',
-    system = 'switch',
-    limit = 10,
-    availability = 'new',
-    offset = 0,
-  } = options;
-
-  const url = config.nintendoApi.url + config.nintendoApi.routes.filter;
-
-  return axios.get(url, {params: {sort, system, limit, availability, offset}})
-    .then(response => {
-      if (response.data.games) return response.data.games;
-      throw config.nintendoApi.errors.notFound;
-    })
-    .then(json => {
-      return Promise.resolve(json);
-    })
-    .catch(err => Promise.reject(err));
+  return callAPI(url, {params});
 };
 
 module.exports = {
-  getGame,
+  game,
   search,
-  getLatestGames,
+  filter,
 };
