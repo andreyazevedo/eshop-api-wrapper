@@ -40,5 +40,11 @@
   },
   "engines": {
     "node": ">=9.5.0"
-  }
+  },
+  "keywords": [
+    "nintendo",
+    "eshop",
+    "api",
+    "switch"
+  ]
 }
