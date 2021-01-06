@@ -19,7 +19,7 @@
     "release:major": "release-it major"
   },
   "dependencies": {
-    "axios": "0.18.0"
+    "axios": "0.21.1"
   },
   "devDependencies": {
     "babel-core": "6.26.0",
